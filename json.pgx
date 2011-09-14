@@ -1,0 +1,37 @@
+# <foo> ** <bar>
+# [ <foo> [ <bar> <foo> ]*]?
+# 
+# <foo> ++ <bar>
+# [ <foo> [ <bar> <foo> ]*]
+
+# json:: <map> | <seq>
+json: /<WS>*/ [ <map> | <seq> ] /<WS>*/
+
+node: <map> | <seq> | <scalar>
+
+# map:: /<LCURLY>/ <pair> ** /<COMMA>/ /<RCURLY>/
+map: /<WS>*<LCURLY><WS>*/
+    [ <pair> [ /<WS>*<COMMA><WS>*/ <pair> ]*]?
+    /<WS>*<RCURLY><WS>*/
+
+# pair:: <string> /<COLON>/ <node>
+pair: <string> /<WS>*<COLON><WS>*/ <node>
+
+# seq:: /<LSQUARE>/ <node> ** /<COMMA>/ /<RSQUARE>/
+seq: /<WS>*<LSQUARE><WS>*/
+    [ <node> [ /<WS>*<COMMA><WS>*/ <node> ]*]?
+    /<WS>*<RSQUARE><WS>*/
+
+scalar: <string> | <number> | <boolean> | <null>
+
+string: /<DOUBLE>((?:<BACK><BACK>|<BACK><DOUBLE>|[^<DOUBLE><BREAK>])*)<DOUBLE>/
+
+number: /(<DIGIT>+(?:<DOT><DIGIT>*)?|<DOT><DIGIT>+)/
+
+boolean: <true> | <false>
+
+true: /true/
+
+false: /false/
+
+null: /null/
