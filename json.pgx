@@ -2,11 +2,11 @@ TOP: -<map> | -<seq>
 
 node: -<map> | -<seq> | -<scalar>
 
-map: /<WS>*<LCURLY><WS>*/ -<pair>? ** /<WS>*<COMMA><WS>*/ /<WS>*<RCURLY><WS>*/
+map: /~<LCURLY>~/ -<pair>? ** /~<COMMA>~/ /~<RCURLY>~/
 
-pair: <string> /<WS>*<COLON><WS>*/ -<node>
+pair: <string> /~<COLON>~/ -<node>
 
-seq: /<WS>*<LSQUARE><WS>*/ -<node>? ** /<WS>*<COMMA><WS>*/ /<WS>*<RSQUARE><WS>*/
+seq: /~<LSQUARE>~/ -<node>? ** /~<COMMA>~/ /~<RSQUARE>~/
 
 scalar: <string> | <number> | <boolean> | <null>
 
