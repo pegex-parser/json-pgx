@@ -1,33 +1,36 @@
 ---
-+top: json
++top: TOP
+TOP:
+  .any:
+  - -pass: 1
+    .ref: map
+  - -pass: 1
+    .ref: seq
 boolean:
   .any:
-  - .ref: 'true'
-  - .ref: 'false'
+  - -pass: 1
+    .ref: 'true'
+  - -pass: 1
+    .ref: 'false'
 'false':
-  .rgx: 'false'
-json:
-  .all:
-  - .rgx: \s*
-  - .any:
-    - .ref: map
-    - .ref: seq
-  - .rgx: \s*
+  .rgx: (f)alse
 map:
   .all:
-  - .rgx: \s*\{\s*
-  - +mod: '*'
-    .all:
-    - .ref: pair
-    - .all:
-      - .rgx: <WS*>,\s*
-      - .ref: pair
-  - .rgx: \s*\}\s*
+  - .rgx: ~\{~
+  - +qty: '?'
+    -pass: 1
+    .ref: pair
+    .sep:
+      .rgx: ~,~
+  - .rgx: ~\}~
 node:
   .any:
-  - .ref: map
-  - .ref: seq
-  - .ref: scalar
+  - -pass: 1
+    .ref: map
+  - -pass: 1
+    .ref: seq
+  - -pass: 1
+    .ref: scalar
 'null':
   .rgx: 'null'
 number:
@@ -35,8 +38,9 @@ number:
 pair:
   .all:
   - .ref: string
-  - .rgx: \s*:\s*
-  - .ref: node
+  - .rgx: ~:~
+  - -pass: 1
+    .ref: node
 scalar:
   .any:
   - .ref: string
@@ -45,15 +49,14 @@ scalar:
   - .ref: 'null'
 seq:
   .all:
-  - .rgx: \s*\[\s*
-  - +mod: '*'
-    .all:
-    - .ref: node
-    - .all:
-      - .rgx: <WS*>,\s*
-      - .ref: node
-  - .rgx: \s*\]\s*
+  - .rgx: ~\[~
+  - +qty: '?'
+    -pass: 1
+    .ref: node
+    .sep:
+      .rgx: ~,~
+  - .rgx: ~\]~
 string:
   .rgx: '"((?:\\\\|\\"|[^"\n])*)"'
 'true':
-  .rgx: 'true'
+  .rgx: (t)rue
