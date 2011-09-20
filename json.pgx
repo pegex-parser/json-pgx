@@ -1,14 +1,14 @@
-TOP: -<map> | -<seq>
+json: <map> | <seq>
 
-node: -<map> | -<seq> | -<scalar>
+node: <map> | <seq> | <scalar>
 
-map: /~<LCURLY>~/ -<pair>? ** /~<COMMA>~/ /~<RCURLY>~/
+map: /~<LCURLY>~/ <pair>? ** /~<COMMA>~/ /~<RCURLY>~/
 
-pair: <string> /~<COLON>~/ -<node>
+pair: <string> /~<COLON>~/ <node>
 
-seq: /~<LSQUARE>~/ -<node>? ** /~<COMMA>~/ /~<RSQUARE>~/
+seq: /~<LSQUARE>~/ <node>? ** /~<COMMA>~/ /~<RSQUARE>~/
 
-scalar: <string> | <number> | -<boolean> | <null>
+scalar: <string> | <number> | <boolean> | <null>
 
 string: /<DOUBLE>((?:<BACK><BACK>|<BACK><DOUBLE>|[^<DOUBLE><BREAK>])*)<DOUBLE>/
 
