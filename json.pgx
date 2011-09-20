@@ -8,13 +8,13 @@ pair: <string> /~<COLON>~/ -<node>
 
 seq: /~<LSQUARE>~/ -<node>? ** /~<COMMA>~/ /~<RSQUARE>~/
 
-scalar: <string> | <number> | <boolean> | <null>
+scalar: <string> | <number> | -<boolean> | <null>
 
 string: /<DOUBLE>((?:<BACK><BACK>|<BACK><DOUBLE>|[^<DOUBLE><BREAK>])*)<DOUBLE>/
 
 number: /(<DIGIT>+(?:<DOT><DIGIT>*)?|<DOT><DIGIT>+)/
 
-boolean: -<true> | -<false>
+boolean: <true> | <false>
 
 true: /(t)rue/
 
