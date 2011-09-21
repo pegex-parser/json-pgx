@@ -16,8 +16,8 @@ number: /(<DIGIT>+(?:<DOT><DIGIT>*)?|<DOT><DIGIT>+)/
 
 boolean: <true> | <false>
 
-true: /(t)rue/
+true: /true/
 
-false: /(f)alse/
+false: /false/
 
 null: /null/
