@@ -2,17 +2,19 @@ json: <map> | <seq>
 
 node: <map> | <seq> | <scalar>
 
-map: /~<LCURLY>~/ <pair>? ** /~<COMMA>~/ /~<RCURLY>~/
+map: /~<LCURLY>~/ <pair>* % /~<COMMA>~/ /~<RCURLY>~/
 
 pair: <string> /~<COLON>~/ <node>
 
-seq: /~<LSQUARE>~/ <node>? ** /~<COMMA>~/ /~<RSQUARE>~/
+seq: /~<LSQUARE>~/ <node>* % /~<COMMA>~/ /~<RSQUARE>~/
 
 scalar: <string> | <number> | <boolean> | <null>
 
+# Need to doublecheck string rules.
 string: /<DOUBLE>((?:<BACK><BACK>|<BACK><DOUBLE>|[^<DOUBLE><BREAK>])*)<DOUBLE>/
 
-number: /(<DIGIT>+(?:<DOT><DIGIT>*)?|<DOT><DIGIT>+)/
+# Need to check all possible allowable number forms: -.2 -0 -1. 1e9 etc
+number: /(<DASH>?<DIGIT>+(?:<DOT><DIGIT>*)?|<DOT><DIGIT>+)/
 
 boolean: <true> | <false>
 
