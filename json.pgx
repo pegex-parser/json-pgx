@@ -26,7 +26,7 @@ scalar:
 # Need to doublecheck string rules.
 string: /
     <DOUBLE>
-        ((?:
+        ((:
             <BACK><BACK> |
             <BACK><DOUBLE> |
             [^ <DOUBLE> <BREAK> ]
@@ -34,12 +34,12 @@ string: /
     <DOUBLE>
 /
 
-# Need to check all possible allowable number forms: -.2 -0 -1. 1e9 etc
+# Need to check all possible allowable number forms.
 number: /(
     <DASH>?
-    (?: 0 | [1-9]<DIGIT>* )
-    (?: <DOT> <DIGIT>* )?
-    (?: [eE] [<DASH><PLUS>]? <DIGIT>+ )?
+    (: 0 | [1-9] <DIGIT>* )
+    (: <DOT> <DIGIT>* )?
+    (: [eE] [<DASH><PLUS>]? <DIGIT>+ )?
 )/
 
 boolean: <true> | <false>
