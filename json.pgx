@@ -36,10 +36,10 @@ string: /
 
 # Need to check all possible allowable number forms: -.2 -0 -1. 1e9 etc
 number: /(
-    <DASH>? (?:
-        <DIGIT>+ (?:<DOT><DIGIT>*)? |
-        <DOT><DIGIT>+
-    )
+    <DASH>?
+    (?: 0 | [1-9]<DIGIT>* )
+    (?: <DOT> <DIGIT>* )?
+    (?: [eE] [<DASH><PLUS>]? <DIGIT>+ )?
 )/
 
 boolean: <true> | <false>
