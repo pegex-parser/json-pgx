@@ -1,3 +1,10 @@
+# A simple grammar for the simple JSON data language.
+# See https://github.com/ingydotnet/pegex-json-pm for a Parser implementation
+# that uses this grammar.
+
+%grammar json
+%version 0.0.1
+
 json: <map> | <seq>
 
 node: <map> | <seq> | <scalar>
@@ -23,10 +30,9 @@ scalar:
     <boolean> |
     <null>
 
-# Need to doublecheck string rules.
-string: /
-    <DOUBLE>
-        ((:
+string: /                   # XXX Need to code this to spec.
+    <DOUBLE>                # This works for simple cases,
+        ((:                 # but doesn't handle all escaping yet.
             <BACK><BACK> |
             <BACK><DOUBLE> |
             [^ <DOUBLE> <BREAK> ]
@@ -34,7 +40,6 @@ string: /
     <DOUBLE>
 /
 
-# Need to check all possible allowable number forms.
 number: /(
     <DASH>?
     (: 0 | [1-9] <DIGIT>* )

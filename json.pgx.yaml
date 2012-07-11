@@ -1,5 +1,7 @@
 ---
++grammar: json
 +top: json
++version: 0.0.1
 boolean:
   .any:
   - .ref: 'true'
