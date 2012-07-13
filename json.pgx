@@ -5,9 +5,9 @@
 %grammar json
 %version 0.0.1
 
-json: <map> | <seq>
+json: map | seq
 
-node: <map> | <seq> | <scalar>
+node: map | seq | scalar
 
 map:
     / ~ <LCURLY> ~ /
@@ -15,20 +15,20 @@ map:
     / ~ <RCURLY> ~ /
 
 pair:
-    <string>
+    string
     / ~ <COLON> ~ /
-    <node>
+    node
 
 seq:
     / ~ <LSQUARE> ~ /
-    <node>* % / ~ <COMMA> ~ /
+    node* % / ~ <COMMA> ~ /
     / ~ <RSQUARE> ~ /
 
 scalar:
-    <string> |
-    <number> |
-    <boolean> |
-    <null>
+    string |
+    number |
+    boolean |
+    null
 
 string: /                   # XXX Need to code this to spec.
     <DOUBLE>                # This works for simple cases,
@@ -47,7 +47,7 @@ number: /(
     (: [eE] [<DASH><PLUS>]? <DIGIT>+ )?
 )/
 
-boolean: <true> | <false>
+boolean: true | false
 
 true: /true/
 
