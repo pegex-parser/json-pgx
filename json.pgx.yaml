@@ -1,6 +1,6 @@
 ---
 +grammar: json
-+top: json
++toprule: json
 +version: 0.0.1
 boolean:
   .any:
