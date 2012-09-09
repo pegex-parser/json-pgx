@@ -1,6 +1,6 @@
 # A simple grammar for the simple JSON data language.
-# See https://github.com/ingydotnet/pegex-json-pm for a Parser implementation
-# that uses this grammar.
+# For parser implementations that use this grammar, see:
+# * https://github.com/ingydotnet/pegex-json-pm
 
 %grammar json
 %version 0.0.1
@@ -30,13 +30,29 @@ scalar:
     boolean |
     null
 
-string: /                   # XXX Need to code this to spec.
-    <DOUBLE>                # This works for simple cases,
-        ((:                 # but doesn't handle all escaping yet.
-            <BACK><BACK> |
-            <BACK><DOUBLE> |
-            [^ <DOUBLE> <BREAK> ]
-        )*)
+# string and number are interpretations of http://www.json.org/
+string: /
+    <DOUBLE>
+        (
+            (:
+                <BACK> (:       # Backslash escapes
+                    [
+                        <DOUBLE>    # Double Quote
+                        <BACK>      # Back Slash
+                        <SLASH>     # Foreward Slash
+                        b           # Back Space
+                        f           # Form Feed
+                        n           # New Line
+                        r           # Carriage Return
+                        t           # Horizontal Tab
+                    ]
+                |
+                    u <HEX>{4}      # Unicode octet pair
+                )
+            |
+                [^ <DOUBLE> <CONTROLS> ]  # Anything else
+            )*
+        )
     <DOUBLE>
 /
 

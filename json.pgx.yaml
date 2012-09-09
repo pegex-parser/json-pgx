@@ -49,6 +49,6 @@ seq:
       .rgx: \s*,\s*
   - .rgx: \s*\]\s*
 string:
-  .rgx: '"((?:\\\\|\\"|[^"\n])*)"'
+  .rgx: '"((?:\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})|[^"\x00-\x1f])*)"'
 'true':
   .rgx: 'true'
