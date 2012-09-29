@@ -11,7 +11,7 @@ node: map | seq | scalar
 
 map:
     / ~ <LCURLY> ~ /
-    <pair>* % / ~ <COMMA> ~ /
+    pair* % / ~ <COMMA> ~ /
     / ~ <RCURLY> ~ /
 
 pair:
