@@ -16,10 +16,14 @@ json:
 map:
   .all:
   - .rgx: \s*\{\s*
-  - +min: 0
-    .ref: pair
-    .sep:
-      .rgx: \s*,\s*
+  - +max: 1
+    -flat: 1
+    .all:
+    - .ref: pair
+    - +min: 0
+      .all:
+      - .rgx: \s*,\s*
+      - .ref: pair
   - .rgx: \s*\}\s*
 node:
   .any:
@@ -44,10 +48,14 @@ scalar:
 seq:
   .all:
   - .rgx: \s*\[\s*
-  - +min: 0
-    .ref: node
-    .sep:
-      .rgx: \s*,\s*
+  - +max: 1
+    -flat: 1
+    .all:
+    - .ref: node
+    - +min: 0
+      .all:
+      - .rgx: \s*,\s*
+      - .ref: node
   - .rgx: \s*\]\s*
 string:
   .rgx: '"((?:\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})|[^"\x00-\x1f])*)"'
