@@ -17,10 +17,10 @@ map:
   .all:
   - .rgx: \s*\{\s*
   - +max: 1
-    -flat: 1
     .all:
     - .ref: pair
     - +min: 0
+      -flat: 1
       .all:
       - .rgx: \s*,\s*
       - .ref: pair
@@ -49,10 +49,10 @@ seq:
   .all:
   - .rgx: \s*\[\s*
   - +max: 1
-    -flat: 1
     .all:
     - .ref: node
     - +min: 0
+      -flat: 1
       .all:
       - .rgx: \s*,\s*
       - .ref: node
