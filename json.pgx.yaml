@@ -28,16 +28,18 @@ object:
   - .rgx: \s*\{\s*
   - +max: 1
     .all:
-    - .all: &1
-      - .ref: string
-      - .rgx: \s*:\s*
-      - .ref: value
+    - .ref: pair
     - +min: 0
       -flat: 1
       .all:
       - .rgx: \s*,\s*
-      - .all: *1
+      - .ref: pair
   - .rgx: \s*\}\s*
+pair:
+  .all:
+  - .ref: string
+  - .rgx: \s*:\s*
+  - .ref: value
 string:
   .rgx: '"((?:\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})|[^"\x00-\x1f])*)"'
 'true':

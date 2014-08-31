@@ -10,8 +10,10 @@ json: value
 
 object:
   /- '{' -/
-  (string /- ':' -/ value)* % /- ',' -/
+  pair* % /- ',' -/
   /- '}' -/
+
+pair: string /- ':' -/ value
 
 array:
   /- '[' -/
