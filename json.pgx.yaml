@@ -3,6 +3,8 @@
 +include: pegex-atoms
 +toprule: json
 +version: 0.0.1
+_:
+  .rgx: \s*
 array:
   .all:
   - .rgx: \s*\[\s*
@@ -18,7 +20,10 @@ array:
 'false':
   .rgx: 'false'
 json:
-  .ref: value
+  .all:
+  - .ref: _
+  - .ref: value
+  - .ref: _
 'null':
   .rgx: 'null'
 number:

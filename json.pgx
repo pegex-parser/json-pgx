@@ -62,8 +62,6 @@ number: /(
   (: [eE] [ DASH PLUS ]? DIGIT+ )?
 )/
 
-boolean: true | false
-
 true: 'true'
 
 false: 'false'
