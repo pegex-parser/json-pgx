@@ -58,7 +58,7 @@ string: /
 number: /(
   DASH?
   (: '0' | [1-9] DIGIT* )
-  (: DOT DIGIT* )?
+  (: DOT DIGIT+ )?
   (: [eE] [ DASH PLUS ]? DIGIT+ )?
 )/
 
