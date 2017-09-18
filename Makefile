@@ -1,5 +1,5 @@
 GRAMMAR = $(shell echo *.pgx)
-export PERL5LIB=../pegex-pm/lib
+export PERL5LIB := ../pegex-pm/lib:$(PERL5LIB)
 COMPILE_COMMAND = pegex compile $(OPTIONS) --to=
 ALL = $(GRAMMAR:%=%.yaml) $(GRAMMAR:%=%.json)
 
