@@ -7,16 +7,19 @@ _:
   .rgx: \s*
 array:
   .all:
-  - .rgx: \s*\[\s*
+  - -skip: 1
+    .rgx: \s*\[\s*
   - +max: 1
     .all:
     - .ref: value
     - +min: 0
       -flat: 1
       .all:
-      - .rgx: \s*,\s*
+      - -skip: 1
+        .rgx: \s*,\s*
       - .ref: value
-  - .rgx: \s*\]\s*
+  - -skip: 1
+    .rgx: \s*\]\s*
 'false':
   .rgx: 'false'
 json:
@@ -30,20 +33,24 @@ number:
   .rgx: (\-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][\-\+]?[0-9]+)?)
 object:
   .all:
-  - .rgx: \s*\{\s*
+  - -skip: 1
+    .rgx: \s*\{\s*
   - +max: 1
     .all:
     - .ref: pair
     - +min: 0
       -flat: 1
       .all:
-      - .rgx: \s*,\s*
+      - -skip: 1
+        .rgx: \s*,\s*
       - .ref: pair
-  - .rgx: \s*\}\s*
+  - -skip: 1
+    .rgx: \s*\}\s*
 pair:
   .all:
   - .ref: string
-  - .rgx: \s*:\s*
+  - -skip: 1
+    .rgx: \s*:\s*
   - .ref: value
 string:
   .rgx: '"((?:\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})|[^"\x00-\x1f\\])*)"'
